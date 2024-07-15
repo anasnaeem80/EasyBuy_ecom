@@ -1,0 +1,29 @@
+.product-title {
+  font-size: 1.25rem; /* Smaller font size */
+}
+
+.product-description {
+  font-size: 0.875rem; /* Smaller font size */
+}
+
+.product-category {
+  font-size: 0.75rem; /* Smaller font size */
+}
+
+.product-rating {
+  font-size: 0.875rem; /* Smaller font size */
+}
+
+.product-price {
+  font-size: 1.5rem; /* Smaller font size */
+}
+
+.product-img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.similar-product-img {
+  max-width: 150px;
+  max-height: 200px;
+}
