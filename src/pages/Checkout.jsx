@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Checkout = () => {
-  const state = useSelector((state) => state.handleCart);
+  const state = useSelector((state) => state.handleCart.items || []);
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({
     firstName: "",
@@ -128,258 +128,209 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
+
             <div className='col-md-7 col-lg-8'>
-              <div className='card mb-4'>
-                <div className='card-header py-3'>
-                  <h4 className='mb-0'>Billing address</h4>
-                </div>
-                <div className='card-body'>
-                  <form
-                    className='needs-validation'
-                    noValidate
-                    onSubmit={handleSubmit}
-                  >
-                    <div className='row g-3'>
-                      <div className='col-sm-6 my-1'>
-                        <label htmlFor='firstName' className='form-label'>
-                          First name
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='firstName'
-                          placeholder=''
-                          value={formValues.firstName}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Valid first name is required.
-                        </div>
-                      </div>
-
-                      <div className='col-sm-6 my-1'>
-                        <label htmlFor='lastName' className='form-label'>
-                          Last name
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='lastName'
-                          placeholder=''
-                          value={formValues.lastName}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Valid last name is required.
-                        </div>
-                      </div>
-
-                      <div className='col-12 my-1'>
-                        <label htmlFor='email' className='form-label'>
-                          Email
-                        </label>
-                        <input
-                          type='email'
-                          className='form-control'
-                          id='email'
-                          placeholder='you@example.com'
-                          value={formValues.email}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Please enter a valid email address for shipping
-                          updates.
-                        </div>
-                      </div>
-
-                      <div className='col-12 my-1'>
-                        <label htmlFor='address' className='form-label'>
-                          Address
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='address'
-                          placeholder='1234 Main St'
-                          value={formValues.address}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Please enter your shipping address.
-                        </div>
-                      </div>
-
-                      <div className='col-12'>
-                        <label htmlFor='address2' className='form-label'>
-                          Address 2{" "}
-                          <span className='text-muted'>(Optional)</span>
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='address2'
-                          placeholder='Apartment or suite'
-                          value={formValues.address2}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-
-                      <div className='col-md-5 my-1'>
-                        <label htmlFor='country' className='form-label'>
-                          Country
-                        </label>
-                        <br />
-                        <select
-                          className='form-select'
-                          id='country'
-                          value={formValues.country}
-                          onChange={handleInputChange}
-                          required
-                        >
-                          <option value=''>Choose...</option>
-                          <option>Pakistan</option>
-                        </select>
-                        <div className='invalid-feedback'>
-                          Please select a valid country.
-                        </div>
-                      </div>
-
-                      <div className='col-md-4 my-1'>
-                        <label htmlFor='state' className='form-label'>
-                          Province
-                        </label>
-                        <br />
-                        <select
-                          className='form-select'
-                          id='state'
-                          value={formValues.state}
-                          onChange={handleInputChange}
-                          required
-                        >
-                          <option value=''>Choose...</option>
-                          <option>Sindh</option>
-                        </select>
-                        <div className='invalid-feedback'>
-                          Please provide a valid state.
-                        </div>
-                      </div>
-
-                      <div className='col-md-3 my-1'>
-                        <label htmlFor='city' className='form-label'>
-                          City
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='city'
-                          placeholder=''
-                          value={formValues.city}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          City Name required.
-                        </div>
-                      </div>
+              <h4 className='mb-3'>Billing address</h4>
+              <form onSubmit={handleSubmit}>
+                <div className='row'>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='firstName' className='form-label'>
+                        First Name
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='firstName'
+                        value={formValues.firstName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
-
-                    <hr className='my-4' />
-
-                    <h4 className='mb-3'>Payment</h4>
-
-                    <div className='row gy-3'>
-                      <div className='col-md-6'>
-                        <label htmlFor='ccName' className='form-label'>
-                          Name on card
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='ccName'
-                          placeholder=''
-                          value={formValues.ccName}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <small className='text-muted'>
-                          Full name as displayed on card
-                        </small>
-                        <div className='invalid-feedback'>
-                          Name on card is required
-                        </div>
-                      </div>
-
-                      <div className='col-md-6'>
-                        <label htmlFor='ccNumber' className='form-label'>
-                          Credit card number
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='ccNumber'
-                          placeholder=''
-                          value={formValues.ccNumber}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Credit card number is required
-                        </div>
-                      </div>
-
-                      <div className='col-md-3'>
-                        <label htmlFor='ccExpiration' className='form-label'>
-                          Expiration
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='ccExpiration'
-                          placeholder=''
-                          value={formValues.ccExpiration}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Expiration date required
-                        </div>
-                      </div>
-
-                      <div className='col-md-3'>
-                        <label htmlFor='ccCVV' className='form-label'>
-                          CVV
-                        </label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='ccCVV'
-                          placeholder=''
-                          value={formValues.ccCVV}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        <div className='invalid-feedback'>
-                          Security code required
-                        </div>
-                      </div>
+                  </div>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='lastName' className='form-label'>
+                        Last Name
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='lastName'
+                        value={formValues.lastName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
-
-                    <hr className='my-4' />
-
-                    <button
-                      className='w-100 btn btn-primary'
-                      type='submit'
-                      disabled={!isFormValid}
-                    >
-                      Continue to checkout
-                    </button>
-                  </form>
+                  </div>
                 </div>
-              </div>
+
+                <div className='mb-3'>
+                  <label htmlFor='email' className='form-label'>
+                    Email
+                  </label>
+                  <input
+                    type='email'
+                    className='form-control'
+                    id='email'
+                    value={formValues.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className='mb-3'>
+                  <label htmlFor='address' className='form-label'>
+                    Address
+                  </label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='address'
+                    value={formValues.address}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className='mb-3'>
+                  <label htmlFor='address2' className='form-label'>
+                    Address 2 (Optional)
+                  </label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='address2'
+                    value={formValues.address2}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className='row'>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='country' className='form-label'>
+                        Country
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='country'
+                        value={formValues.country}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='state' className='form-label'>
+                        State
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='state'
+                        value={formValues.state}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='mb-3'>
+                  <label htmlFor='city' className='form-label'>
+                    City
+                  </label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='city'
+                    value={formValues.city}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <hr className='my-4' />
+
+                <h4 className='mb-3'>Payment</h4>
+
+                <div className='mb-3'>
+                  <label htmlFor='ccName' className='form-label'>
+                    Name on Card
+                  </label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='ccName'
+                    value={formValues.ccName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <small className='text-muted'>
+                    Full name as displayed on card
+                  </small>
+                </div>
+
+                <div className='mb-3'>
+                  <label htmlFor='ccNumber' className='form-label'>
+                    Credit Card Number
+                  </label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='ccNumber'
+                    value={formValues.ccNumber}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className='row'>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='ccExpiration' className='form-label'>
+                        Expiration
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='ccExpiration'
+                        value={formValues.ccExpiration}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className='col-sm-6'>
+                    <div className='mb-3'>
+                      <label htmlFor='ccCVV' className='form-label'>
+                        CVV
+                      </label>
+                      <input
+                        type='text'
+                        className='form-control'
+                        id='ccCVV'
+                        value={formValues.ccCVV}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <hr className='my-4' />
+
+                <button
+                  className='w-100 btn btn-dark btn-lg'
+                  type='submit'
+                  disabled={!isFormValid}
+                >
+                  Continue to checkout
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -393,7 +344,7 @@ const Checkout = () => {
       <div className='container my-3 py-3'>
         <h1 className='text-center'>Checkout</h1>
         <hr />
-        {state.length ? <ShowCheckout /> : <EmptyCart />}
+        {state.length > 0 ? <ShowCheckout /> : <EmptyCart />}
       </div>
       <Footer />
     </>

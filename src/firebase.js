@@ -1,10 +1,9 @@
-// Import the functions you need from the SDKs you need
+// src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore"; // Add this import
+import { getAuth, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCUukQ8fCF3L0RS4iHA9r0NE1OoCFmvFQo",
   authDomain: "easybuy-e2b33.firebaseapp.com",
@@ -15,10 +14,9 @@ const firebaseConfig = {
   measurementId: "G-9Z7J3F570P",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app); // Initialize Firestore
+const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
-export { auth, db }; // Export auth and db
+export { auth, db, signOut };

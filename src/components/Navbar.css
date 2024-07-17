@@ -1,0 +1,26 @@
+.nav-link.hover-effect {
+  transition: color 0.3s ease;
+}
+
+.nav-link.hover-effect:hover {
+  color: #ff6347; /* Tomato color */
+}
+
+.nav-link.hover-effect:hover .fa-shopping-cart,
+.nav-link.hover-effect:hover .fa-tags {
+  transform: scale(1.2);
+}
+
+.nav-link .fa-shopping-cart,
+.nav-link .fa-tags {
+  transition: transform 0.3s ease;
+}
+
+.navbar .btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .btn:hover {
+  background-color: #ff6347; /* Tomato color */
+  color: #fff;
+}
