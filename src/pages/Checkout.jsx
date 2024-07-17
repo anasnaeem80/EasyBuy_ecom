@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,19 +21,16 @@ const Checkout = () => {
     ccCVV: "",
   });
 
-  useEffect(() => {
-    validateForm();
-  }, [formValues]);
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormValues((prevValues) => ({
       ...prevValues,
       [id]: value,
     }));
+    console.log(id, value);
   };
 
-  const validateForm = () => {
+  const validateForm = useCallback(() => {
     const {
       firstName,
       lastName,
@@ -61,7 +58,11 @@ const Checkout = () => {
         ccExpiration &&
         ccCVV
     );
-  };
+  }, [formValues]);
+
+  useEffect(() => {
+    validateForm();
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

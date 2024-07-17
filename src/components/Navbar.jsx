@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,25 +9,31 @@ import {
   FaUserPlus,
   FaSignOutAlt,
   FaTags,
-} from "react-icons/fa"; // Update icon for Sale
-import { logout } from "../redux/action"; // Ensure you have this action defined in your redux actions
-import "./Navbar.css"; // Import CSS file for hover effects
+} from "react-icons/fa";
+import { logout } from "../redux/action";
+import "./Navbar.css";
 
 const Navbar = () => {
-  const { user } = useAuth(); // Get the user from the AuthContext
+  const { user } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.handleCart.items); // Get cart state from the Redux store
-  const cartCount = cart.reduce((acc, item) => acc + item.qty, 0); // Calculate total quantity of items in the cart
+  const cart = useSelector((state) => state.handleCart.items);
+  const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = async () => {
-    await signOut(auth); // Sign out the user
-    dispatch(logout()); // Dispatch logout action to clear the cart
-    navigate("/"); // Redirect to home page after logout
+    await signOut(auth);
+    dispatch(logout());
+    navigate("/");
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${searchQuery}`);
   };
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+    <nav className='navbar navbar-expand-lg navbar-light bg-lightblue'>
       <div className='container-fluid'>
         <Link className='navbar-brand' to='/' style={{ fontFamily: "cursive" }}>
           EasyBuy
@@ -44,7 +50,21 @@ const Navbar = () => {
           <span className='navbar-toggler-icon'></span>
         </button>
         <div className='collapse navbar-collapse' id='navbarNav'>
-          <ul className='navbar-nav mx-auto mb-2 mb-lg-0'></ul>
+          <ul className='navbar-nav mx-auto mb-2 mb-lg-0'>
+            <form className='d-flex' onSubmit={handleSearch}>
+              <input
+                className='form-control me-2'
+                type='search'
+                placeholder='Search'
+                aria-label='Search'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button className='btn btn-outline-light' type='submit'>
+                Search
+              </button>
+            </form>
+          </ul>
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center'>
             <li className='nav-item me-3'>
               <Link

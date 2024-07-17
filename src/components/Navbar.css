@@ -1,3 +1,17 @@
+.navbar {
+  background-color: #007bff; /* Blue color */
+}
+
+.navbar .btn-outline-light {
+  color: #fff;
+  border-color: #fff;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
 .nav-link.hover-effect {
   transition: color 0.3s ease;
 }

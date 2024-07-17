@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./Footer.css"; // Import the CSS file for footer styles
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -10,43 +11,61 @@ const Footer = () => {
 
   return (
     <>
-      <footer className='mb-0 text-center'>
+      <footer className='footer mb-0 text-center'>
         <div className='container py-5'>
           <div className='row'>
             <div className='col-md-4'>
-              <h5>Quick Links</h5>
+              <h5 className='text-primary'>Quick Links</h5>
               <ul className='list-unstyled'>
                 <li>
-                  <a href='/home'>Home</a>
+                  <a href='/home' className='text-primary'>
+                    Home
+                  </a>
                 </li>
                 <li>
-                  <a href='/shop'>Shop</a>
+                  <a href='/shop' className='text-primary'>
+                    Shop
+                  </a>
                 </li>
                 <li>
-                  <a href='/about'>About Us</a>
+                  <a href='/about' className='text-primary'>
+                    About Us
+                  </a>
                 </li>
                 <li>
-                  <a href='/contact'>Contact Us</a>
+                  <a href='/contact' className='text-primary'>
+                    Contact Us
+                  </a>
                 </li>
                 <li>
-                  <a href='/faq'>FAQs</a>
+                  <a href='/faq' className='text-primary'>
+                    FAQs
+                  </a>
                 </li>
                 <li>
-                  <a href='/shipping'>Shipping Information</a>
+                  <a href='/shipping' className='text-primary'>
+                    Shipping Information
+                  </a>
                 </li>
                 <li>
-                  <a href='/returns'>Returns Policy</a>
+                  <a href='/returns' className='text-primary'>
+                    Returns Policy
+                  </a>
                 </li>
                 <li>
-                  <a href='/terms'>Terms of Service</a>
+                  <a href='/terms' className='text-primary'>
+                    Terms of Service
+                  </a>
                 </li>
                 <li>
-                  <a href='/privacy'>Privacy Policy</a>
+                  <a href='/privacy' className='text-primary'>
+                    Privacy Policy
+                  </a>
                 </li>
               </ul>
             </div>
             <div className='col-md-4'>
-              <h5>Contact Information</h5>
+              <h5 className='text-primary'>Contact Information</h5>
               <p>
                 123 Ecommerce St., Suite 100
                 <br />
@@ -56,7 +75,7 @@ const Footer = () => {
               <p>Phone: (123) 456-7890</p>
             </div>
             <div className='col-md-4'>
-              <h5>Stay Connected</h5>
+              <h5 className='text-primary'>Stay Connected</h5>
               <p>
                 <a
                   className='text-dark fs-4 mx-2'
